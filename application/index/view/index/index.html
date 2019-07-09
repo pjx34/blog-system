@@ -1,0 +1,46 @@
+{extend name="public/base"/}
+{block name="title"}
+{$catename}{if $catename neq ""}-{/if}{$system.webname}
+{/block}
+{block name="content"}
+		<div class="jumbotron">
+			<h1 class="animated fadeInDown">Tpblog</h1>
+			<p class="animated shake">梦中程序员是一个教学级博客系统，目前使用ThinkPHP5.1和Laravel5.5框架各开发一个，网站暂时只提供博文浏览功能，视频功能、留言功能、投稿功能、收益功能、推荐功能稍后开放。</p>
+			<h2 class="animated fadeInUp">联系<a href="http://wpa.qq.com/msgrd?v=3&uin=305530751&site=qq&menu=yes" target="_blank">305530751</a></h2>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-8">
+				<div class="page-header h3">{$catename|default="博文"}列表</div>
+				<div class="article-list">
+					<div class="article-list-item">
+					{volist name="articles" id="article"}
+						<a href="{:url('index/article/detail',['id'=>$article.id])}" class="title">{$article.title}</a>
+						<div class="info">
+							<span class="author">作者：{$article.author}</span>
+							<span class="time">发布时间：{$article.create_time}</span>
+							<span class="read">阅读：{$article.click}</span>-
+							<span class="comment">评论：{$article.comm_num}</span>
+							<span class="comment">板块：{$article.cate.catename}</span>
+						</div>
+						{/volist}
+					</div>
+				</div>
+				<nav class="">
+					<ul class="pagination">
+				{$articles->render()}
+					</ul>
+				</nav>
+			</div>
+{/block}
+{block name="topArticle"}
+				<div class="page-header h3">推荐文章</div>
+				{volist name="topArticles" id="topArticle"}
+				<div class="topic-list">
+					<div class="topic-list-item">
+						<a href="#" class="title">{$topArticle.title}</a>
+					</div>	
+				</div>
+				{/volist}
+			</div>
+{/block}
+		

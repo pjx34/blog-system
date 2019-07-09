@@ -1,0 +1,58 @@
+{extend name="public/base"}
+{block name="title"}
+{$article.title}{if $article.title neq ""}-{/if}{$system.webname}
+{/block}
+{block name="content"}
+<div class="row">
+			<div class="col-sm-12 col-md-8">
+				<h1 class="article-title">{$article.title}</h1>
+				<div class="status">{$article.click}阅读-{$article.comm_num}评论-作者:{$article.author}
+				{volist name="$article.tags|strToArray" id="tag"}
+					<span class="label label-default">{$tag}</span>
+				{/volist}
+				</div>
+				<div class="article-content">
+					<blockquote>
+						{$article.desc}
+					</blockquote>
+					{$article.content}
+				</div>
+				<div class="article-comment">
+					<div class="page-header"><b>相关评论</b></div>
+					<div class="comment-content">
+						<form action="{:url('index/article/comm')}" method="post">
+						<input type="hidden" name="article_id" value="{$article.id}">
+						<input type="hidden"  name="m_id" value="{:session('index.nickname')}">
+							<div class="form-group">
+								<textarea class="form-control" id="content" name="content" rows="5" cols=""></textarea>
+							</div>
+							<div class="form-group pull-right">
+								<button type="submit" class="btn btn-primary">评论（请认真评论）</button>
+							</div>
+						</form>
+					</div>
+					<div class="clearfix"></div>
+					<div class="comment-list">
+						<div class="comment-list-item">
+						{volist name="comments" id="comment"}
+							{volist name="members" id="member"}
+							<div class="info">{if $comment.member_id==$member.id} {$member.nickname} {/if}<small>
+							{/volist}
+							{$comment.create_time}</small></div>
+							<div class="content">{$comment.content}</div>
+						{/volist}
+						</div>
+					</div>
+				</div>
+			{/block}
+			{block name="topArticle"}
+				<div class="page-header h3">推荐文章</div>
+				{volist name="topArticles" id="topArticle"}
+				<div class="topic-list">
+					<div class="topic-list-item">
+						<a href="#" class="title">{$topArticle.title}</a>
+					</div>	
+				</div>
+				{/volist}
+
+{/block}

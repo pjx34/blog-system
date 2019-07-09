@@ -1,0 +1,95 @@
+{include file="public/_head"/}
+    <!-- /Navbar -->
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+
+            <!-- Page Sidebar -->
+{include file="public/_left" /}
+            <!-- /Page Sidebar -->
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-home"></i>&nbsp;管理员管理
+                        </li>
+                        <li>
+                        	管理员编辑
+                        </li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+                <!-- Page Body -->
+                <div class="page-body">
+                	<div class="row">
+                		<div class="col-xs-12">
+                			<div class="widget radius-bordered">
+                				<div class="widget-header bordered-bottom bordered-themeprimary">
+                					<span class="widget-caption">管理员编辑</span>
+                				</div>
+                				<div class="widget-body">
+                                    <form action="{:url('admin/admin/edit')}" method="post" class="form-horizontal">
+                                    	<input type="hidden" value="{$admin.id}" name="id">
+                                        <div class="form-group">
+                                            <label for="usernamae" class="col-sm-2 control-label no-padding-right">管理员名称</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="username" class="form-control" id="username" value="{$admin.username}" placeholder="管理员名称" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+                                           <div class="form-group">
+                                            <label for="oldpass" class="col-sm-2 control-label no-padding-right">原密码</label>
+                                            <div class="col-sm-6">
+                                                <input type="password" name="oldpass" class="form-control" id="oldpass" placeholder="原密码" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+                                            <div class="form-group">
+                                            <label for="password" class="col-sm-2 control-label no-padding-right">新密码</label>
+                                            <div class="col-sm-6">
+                                                <input type="password" name="password" class="form-control" id="password" placeholder="新密码" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                            <label for="nickname" class="col-sm-2 control-label no-padding-right">昵称</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="nickname" class="form-control" id="nickname" value="{$admin.nickname}" placeholder="昵称" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+                                             <div class="form-group">
+                                            <label for="status" class="col-sm-2 control-label no-padding-right">状态</label>
+                                            <div class="col-sm-6">
+                                                <input readonly type="status" name="status" class="form-control" id="email" value="{if $admin.status==1}正常{else/}禁用{/if}" placeholder="状态" />
+                                                <p class="help-block"></p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button type="submit" class="btn btn-primary">修改</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+
+        </div>
+        <!-- /Page Container -->
+        <!-- Main Container -->
+
+    </div>
+
+{include file="public/_js" /}
+</body>
+<!--  /Body -->
+</html>
